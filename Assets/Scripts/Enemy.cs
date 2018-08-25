@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 	public Rigidbody2D body;
+	public BoxCollider2D collider;
 
 	// Use this for initialization
 	private void Start () {
@@ -13,15 +14,13 @@ public class Enemy : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	private void Update () {		
+	private void Update () {
+	
 	}
 
-	private void OnCollisionEnter (Collision col)
+	void OnTriggerEnter2D(Collider2D col)
 	{
-		Debug.Log("Choque");
-		if(col.gameObject.tag == "shot")
-		{
-			Destroy(col.gameObject);
-		}
+		Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+		Destroy(gameObject);
 	}
 }

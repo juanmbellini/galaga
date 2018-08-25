@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
         if (!(ts.TotalMilliseconds > 300.0f)) return;
         lastShootTime = System.DateTime.Now;
         var shot = Instantiate(ShotPrefab);
-        shot.transform.position = transform.position;
+        shot.transform.position = transform.position;        
         
     }
 }

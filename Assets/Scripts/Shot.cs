@@ -2,7 +2,8 @@
 
 public class Shot : MonoBehaviour {
     public Rigidbody2D body;
-    public float speed = 20.0f;
+    public BoxCollider2D collider;
+    public float speed = 50.0f;
 
 
     private void Start() {
@@ -10,6 +11,11 @@ public class Shot : MonoBehaviour {
     }
 
     private void Update() {
-        // Do nothing
+     
+    }
+    
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);       
     }
 }
