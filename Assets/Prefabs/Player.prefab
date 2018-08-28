@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645922189550390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 10}
+  m_LocalPosition: {x: 0, y: -12.86, z: 10}
   m_LocalScale: {x: 2, y: 2, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  player: {fileID: 0}
+  player: {fileID: 50344993179981840}
   ShotPrefab: {fileID: 1694880095771416, guid: 32b4d2fa0902f4ca692a3010fda3a2d6, type: 2}
 --- !u!212 &212943232389004462
 SpriteRenderer:

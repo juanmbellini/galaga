@@ -16,6 +16,7 @@ public class Shot : MonoBehaviour {
     
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);       
+        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        Destroy(gameObject);
     }
 }
