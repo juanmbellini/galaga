@@ -47,16 +47,13 @@ public class Enemy : MonoBehaviour {
 
         private State _actualState;
 
-        private readonly Transform _enemyTransform;
-
         public MovementStateMachine(float speed, Vector3 circlePoint, Vector3 finalPoint, Transform enemyTransform) {
 //            _startingPoint = startingPoint;
-            _enemyTransform = enemyTransform;
-            _actualState = new MoveToCircleState(speed, circlePoint, finalPoint);
+            _actualState = new MoveToCircleState(speed, circlePoint, finalPoint, enemyTransform);
         }
 
         public void Execute() {
-            _actualState.Move(_enemyTransform); // First, move the enemy.
+            _actualState.Move(); // First, move the enemy.
             _actualState = _actualState.NextState(); // Then, update state.
         }
 
@@ -99,8 +96,7 @@ public class Enemy : MonoBehaviour {
             /// <summary>
             /// Moves the element whose transform is the given one.
             /// </summary>
-            /// <param name="transform">The transform whose position must be modified.</param>
-            public abstract void Move(Transform transform);
+            public abstract void Move();
 
             /// <summary>
             /// Returns the next state.
@@ -115,9 +111,10 @@ public class Enemy : MonoBehaviour {
                 base(speed, circlePoint, finalPoint, enemyTransform) {
             }
 
-            public override void Move(Transform transform) {
-                transform.position = new Vector3(0, 0, 0);
-                transform.position = Vector3.MoveTowards(transform.position, CirclePoint, Time.deltaTime * Speed);
+            public override void Move() {
+                EnemyTransform.position = new Vector3(0, 0, 0);
+                EnemyTransform.position =
+                    Vector3.MoveTowards(EnemyTransform.position, CirclePoint, Time.deltaTime * Speed);
             }
 
             public override State NextState() {
@@ -132,7 +129,7 @@ public class Enemy : MonoBehaviour {
                 base(speed, circlePoint, finalPoint, enemyTransform) {
             }
 
-            public override void Move(Transform transform) {
+            public override void Move() {
                 throw new NotImplementedException();
             }
 
