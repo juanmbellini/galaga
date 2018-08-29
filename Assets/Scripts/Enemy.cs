@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     public Rigidbody2D body;
@@ -10,7 +11,6 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     [SerializeField] private float speed;
 
-
     // ========================================================
     // TODO: remove this! This values must be set by the manager through the Spawn method.
     [SerializeField] private Vector3 _startingPoint;
@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private Vector3 _secondStop;
 
     [SerializeField] private Vector3 _finalPoint;
+
+    [SerializeField] private Player _player;
     // ========================================================
 
     /// <summary>
@@ -38,7 +40,9 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     private void Start() {
         // TODO: remove this! Spawn is called from the enemy manager
-        Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
+        Physics.IgnoreLayerCollision(0, 9);
+        Physics.IgnoreLayerCollision(9, 9);
+        //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
     // Update is called once per frame
@@ -62,14 +66,28 @@ public class Enemy : MonoBehaviour {
             return;
         }
         transform.position = startingPoint;
-        _movementStateMachine = new MovementStateMachine(speed, firstStop, secondStop, finalPoint, transform);
+        gameObject.SetActive(true);
+        _movementStateMachine =
+            new MovementStateMachine(speed, firstStop, secondStop, finalPoint, _player.transform, transform);
+    }
+
+    /// <summary>
+    /// Indicates whether the enemy is alive.
+    /// </summary>
+    /// <returns>true if the enemy is alive, or false otherwise.</returns>
+    public bool IsAlive() {
+        return _movementStateMachine != null;
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        //Destroy(gameObject);
         animatorCtrl.SetTrigger("Death");
+        StartCoroutine(KillEnemy());
+    }
+
+    private IEnumerator KillEnemy() {
         _movementStateMachine = null;
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -98,9 +116,15 @@ public class Enemy : MonoBehaviour {
         private readonly Vector3 _finalPoint;
 
         /// <summary>
+        /// The player's transform (this is a reference to it, storing it in order to get always the actual position).
+        /// </summary>
+        private readonly Transform _playerTransform;
+
+        /// <summary>
         /// The enemy's transform (this is a reference to it, storing it in order to perform the changes).
         /// </summary>
         private readonly Transform _enemyTransform;
+
 
         /// <summary>
         /// The actual State of the machine.
@@ -124,6 +148,11 @@ public class Enemy : MonoBehaviour {
             get { return _finalPoint; }
         }
 
+
+        private Transform PlayerTransform {
+            get { return _playerTransform; }
+        }
+
         private Transform EnemyTransform {
             get { return _enemyTransform; }
         }
@@ -136,14 +165,16 @@ public class Enemy : MonoBehaviour {
         /// <param name="firstStop">The point in which this enemy will start performing the circular movement.</param>
         /// <param name="secondStop">The center of the circle.</param>
         /// <param name="finalPoint">The final point for the enemy (i.e place in the enemy grid).</param>
+        /// <param name="playerTransform">A refenrece to the player's transform (allows to get actual position).</param>
         /// <param name="enemyTransform">A reference to the enemy trasnform (in order to modify its position).</param>
         public MovementStateMachine(float speed,
             Vector3 firstStop, Vector3 secondStop, Vector3 finalPoint,
-            Transform enemyTransform) {
+            Transform playerTransform, Transform enemyTransform) {
             _speed = speed;
             _firstStop = firstStop;
             _secondStop = secondStop;
             _finalPoint = finalPoint;
+            _playerTransform = playerTransform;
             _enemyTransform = enemyTransform;
             _actualState = new MoveToFirstStop(this);
         }
@@ -265,12 +296,58 @@ public class Enemy : MonoBehaviour {
         /// Represents a movement towards the final point.
         /// </summary>
         private class MoveToFinalPoint : LinealMovement {
+            private readonly WaitAttack _waitAttack;
+
             public MoveToFinalPoint(MovementStateMachine movementStateMachine) :
                 base(movementStateMachine, movementStateMachine.FinalPoint) {
+                _waitAttack = new WaitAttack(movementStateMachine, this);
             }
 
             protected override State GetNextState() {
+                _waitAttack.Restart(); // First, restart the state.
+                return _waitAttack;
+            }
+        }
+
+        private class WaitAttack : State {
+            private float _attackWaitTime;
+
+            private readonly MoveToFinalPoint _previousMoveToFinalPointState;
+
+            public WaitAttack(MovementStateMachine movementStateMachine, MoveToFinalPoint previousMoveToFinalPointState)
+                : base(movementStateMachine) {
+                _previousMoveToFinalPointState = previousMoveToFinalPointState;
+                Restart();
+            }
+
+            public override void Move() {
+                // Does not move, only update the wait time.
+                _attackWaitTime -= Time.deltaTime;
+            }
+
+            public override State NextState() {
+                if (_attackWaitTime <= 0) {
+                    return new AttackPlayer(MovementStateMachine, _previousMoveToFinalPointState);
+                }
                 return this;
+            }
+
+            internal void Restart() {
+                _attackWaitTime = Random.Range(1.0f, 3.0f);
+            }
+        }
+
+        private class AttackPlayer : LinealMovement {
+            private readonly MoveToFinalPoint _previousMoveToFinalPointState;
+
+            public AttackPlayer(MovementStateMachine movementStateMachine,
+                MoveToFinalPoint previousMoveToFinalPointState) :
+                base(movementStateMachine, movementStateMachine.PlayerTransform.position) {
+                _previousMoveToFinalPointState = previousMoveToFinalPointState;
+            }
+
+            protected override State GetNextState() {
+                return _previousMoveToFinalPointState;
             }
         }
     }
