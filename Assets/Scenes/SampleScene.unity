@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -215,10 +215,11 @@ MonoBehaviour:
   collider: {fileID: 383932748}
   animatorCtrl: {fileID: 383932749}
   speed: 20
-  _startingPoint: {x: -18, y: -5, z: 0}
-  _firstStop: {x: -12, y: 0, z: 0}
-  _secondStop: {x: 0, y: -5, z: 0}
-  _finalPoint: {x: 7, y: 15, z: 0}
+  _startingPoint: {x: 0, y: 15, z: 0}
+  _firstStop: {x: 0, y: 15, z: 0}
+  _secondStop: {x: 0, y: 15, z: 0}
+  _finalPoint: {x: 0, y: 15, z: 0}
+  _player: {fileID: 1759105871}
 --- !u!50 &383932745
 Rigidbody2D:
   serializedVersion: 4
@@ -295,7 +296,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 383932743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -7, y: 0, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -324,7 +325,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.5}
   m_EdgeRadius: 0
 --- !u!95 &383932749
 Animator:
@@ -417,7 +418,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4956665648239080, guid: 4f04fac0ca9451840921126b7f102d97, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4956665648239080, guid: 4f04fac0ca9451840921126b7f102d97, type: 2}
       propertyPath: m_LocalRotation.x
@@ -541,6 +542,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1645922189550390, guid: 4f04fac0ca9451840921126b7f102d97,
     type: 2}
   m_PrefabInternal: {fileID: 699050613}
+--- !u!114 &1759105871 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114959396609657692, guid: 4f04fac0ca9451840921126b7f102d97,
+    type: 2}
+  m_PrefabInternal: {fileID: 699050613}
+  m_Script: {fileID: 11500000, guid: 0d1334b98c0a53647add835354950765, type: 3}
 --- !u!95 &1759105874
 Animator:
   serializedVersion: 3
