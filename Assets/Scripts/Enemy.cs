@@ -21,8 +21,16 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField] private Vector3 _finalPoint;
 
-    [SerializeField] private Player _player;
     // ========================================================
+    /// <summary>
+    /// A reference to the player, used to attack it.
+    /// </summary>
+    [SerializeField] private Player _player;
+
+    /// <summary>
+    /// This flag indicates whether the enemy is alive.
+    /// </summary>
+    private bool _isAlive;
 
     /// <summary>
     /// A MovementStateMachine that will dictate this enemy's movement.
@@ -34,6 +42,7 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public Enemy() {
         _movementStateMachine = null;
+        _isAlive = false;
     }
 
 
@@ -42,7 +51,7 @@ public class Enemy : MonoBehaviour {
         // TODO: remove this! Spawn is called from the enemy manager
         Physics.IgnoreLayerCollision(0, 9);
         Physics.IgnoreLayerCollision(9, 9);
-        //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
+//        Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
     // Update is called once per frame
@@ -67,6 +76,7 @@ public class Enemy : MonoBehaviour {
         }
         transform.position = startingPoint;
         gameObject.SetActive(true);
+        _isAlive = true;
         _movementStateMachine =
             new MovementStateMachine(speed, firstStop, secondStop, finalPoint, _player.transform, transform);
     }
@@ -76,7 +86,7 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     /// <returns>true if the enemy is alive, or false otherwise.</returns>
     public bool IsAlive() {
-        return _movementStateMachine != null;
+        return _isAlive;
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
@@ -88,6 +98,7 @@ public class Enemy : MonoBehaviour {
         _movementStateMachine = null;
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
+        _isAlive = false;
     }
 
     /// <summary>
