@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour {
     public BoxCollider2D collider;
     public Animator animatorCtrl;
 
+    
+    
     /// <summary>
     /// Indicates the speed (velocity module) for this enemy.
     /// </summary>
@@ -27,6 +29,8 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     [SerializeField] private Player _player;
 
+    [SerializeField] private GameController _gameController;
+    
     /// <summary>
     /// This flag indicates whether the enemy is alive.
     /// </summary>
@@ -52,6 +56,7 @@ public class Enemy : MonoBehaviour {
         Physics.IgnoreLayerCollision(0, 9);
         Physics.IgnoreLayerCollision(9, 9);
         _player = FindObjectOfType<Player>();
+        _gameController = FindObjectOfType<GameController>();
         //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
@@ -98,6 +103,7 @@ public class Enemy : MonoBehaviour {
 
     private IEnumerator KillEnemy() {
         _movementStateMachine = null;
+        _gameController.enemiesAlive--;
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
         _isAlive = false;
