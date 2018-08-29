@@ -38,7 +38,9 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     private void Start() {
         // TODO: remove this! Spawn is called from the enemy manager
-        Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
+        Physics.IgnoreLayerCollision(0, 9);
+        Physics.IgnoreLayerCollision(9, 9);
+        //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
     // Update is called once per frame
