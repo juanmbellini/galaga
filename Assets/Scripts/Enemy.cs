@@ -319,6 +319,9 @@ public class Enemy : MonoBehaviour {
         /// Represents a movement towards the final point.
         /// </summary>
         private class MoveToFinalPoint : LinealMovement {
+            /// <summary>
+            /// The WaitAttack that is reused.
+            /// </summary>
             private readonly WaitAttack _waitAttack;
 
             public MoveToFinalPoint(MovementStateMachine movementStateMachine) :
@@ -332,9 +335,18 @@ public class Enemy : MonoBehaviour {
             }
         }
 
+        /// <summary>
+        /// Represents a state in which the enemy is waiting to attack.
+        /// </summary>
         private class WaitAttack : State {
+            /// <summary>
+            /// Indicates how much time must elapse till the attack is performed.
+            /// </summary>
             private float _attackWaitTime;
 
+            /// <summary>
+            /// The MoveToFinalPoint that is reused.
+            /// </summary>
             private readonly MoveToFinalPoint _previousMoveToFinalPointState;
 
             public WaitAttack(MovementStateMachine movementStateMachine, MoveToFinalPoint previousMoveToFinalPointState)
@@ -354,13 +366,22 @@ public class Enemy : MonoBehaviour {
                 return this;
             }
 
+            /// <summary>
+            /// Restarts this state (i.e this allows reuse of the component).
+            /// </summary>
             internal void Restart() {
                 _attackWaitTime = Random.Range(1.0f, 3.0f);
                 MovementStateMachine.EnemyTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
         }
 
+        /// <summary>
+        /// Represents an attack movement (i.e towards the player point).
+        /// </summary>
         private class AttackPlayer : LinealMovement {
+            /// <summary>
+            /// The MoveToFinalPoint that is reused.
+            /// </summary>
             private readonly MoveToFinalPoint _previousMoveToFinalPointState;
 
             public AttackPlayer(MovementStateMachine movementStateMachine,
