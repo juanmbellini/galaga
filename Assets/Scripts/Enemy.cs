@@ -3,6 +3,7 @@
 public class Enemy : MonoBehaviour {
     public Rigidbody2D body;
     public BoxCollider2D collider;
+    public Animator animatorCrl;
 
     /// <summary>
     /// Indicates the speed (velocity module) for this enemy.
@@ -66,7 +67,8 @@ public class Enemy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        animatorCrl.SetTrigger("Death");
         _movementStateMachine = null;
     }
 

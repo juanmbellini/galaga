@@ -2,8 +2,10 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public float moveSpeed = 10.0f;
+    public float speed = 10.0f;
     public Rigidbody2D player;
+    private float minPosX = -22.0f;
+    private float maxPosX = 22.0f;
     private System.DateTime lastShootTime;
    
 
@@ -20,7 +22,27 @@ public class Player : MonoBehaviour {
     }
 
     private void CheckMove() {
-        player.velocity = new Vector2(Input.GetAxis("Horizontal"), 0.0f) * moveSpeed;
+        float newPosX = 0f;
+		
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            // Nueva posición de X
+            newPosX = transform.position.x - speed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            // Nueva posición de X
+            newPosX = transform.position.x + speed * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            // Clampeo la posición a la pos mínima y máxima
+            newPosX = Mathf.Clamp(newPosX, minPosX, maxPosX);
+			
+            // Asigno la posición
+            transform.position = new Vector3(newPosX, transform.position.y, transform.position.z);
+        }
     }
     
 
