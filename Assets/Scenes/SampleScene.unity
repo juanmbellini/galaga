@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 383932745}
   - component: {fileID: 383932744}
   - component: {fileID: 383932748}
+  - component: {fileID: 383932749}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -254,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 383932745}
   collider: {fileID: 383932748}
+  animatorCrl: {fileID: 383932749}
   speed: 20
   _startingPoint: {x: -18, y: -5, z: 0}
   _firstStop: {x: -12, y: 0, z: 0}
@@ -366,6 +368,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.93, y: 0.84}
   m_EdgeRadius: 0
+--- !u!95 &383932749
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383932743}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c58ef40e88c07d4494ca3ce801e5c6a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &604098061
 Prefab:
   m_ObjectHideFlags: 0
@@ -413,6 +433,11 @@ Prefab:
         type: 2}
       propertyPath: m_Depth
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 20905337022186426, guid: b5fe3cf366a5f8c4b83660ce0e298390,
+        type: 2}
+      propertyPath: field of view
+      value: 39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5fe3cf366a5f8c4b83660ce0e298390, type: 2}
