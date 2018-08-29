@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4607980009169666}
+  - component: {fileID: 114974362362825008}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -39,3 +40,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114974362362825008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1951980889127766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ade68b8463ec6d4c8e248c04e22dec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+  score: 0
+  livesText: {fileID: 0}
+  livesRemaining: 0
+  enemiesAlive: 0
+  enemyPool: []
+  enemyPrefab: {fileID: 114109085128713770, guid: 7b9ac895c225af540940752b9ddcbb62,
+    type: 2}
