@@ -215,10 +215,10 @@ MonoBehaviour:
   collider: {fileID: 383932748}
   animatorCtrl: {fileID: 383932749}
   speed: 20
-  _startingPoint: {x: 0, y: 15, z: 0}
-  _firstStop: {x: 0, y: 15, z: 0}
-  _secondStop: {x: 0, y: 15, z: 0}
-  _finalPoint: {x: 0, y: 15, z: 0}
+  _startingPoint: {x: -22, y: 0, z: 1}
+  _firstStop: {x: 7, y: 10, z: 1}
+  _secondStop: {x: 15, y: 5, z: 1}
+  _finalPoint: {x: 10, y: 15, z: 1}
   _player: {fileID: 1759105871}
 --- !u!50 &383932745
 Rigidbody2D:
