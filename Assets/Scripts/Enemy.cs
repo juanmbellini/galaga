@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour {
         if (_movementStateMachine != null) {
             return;
         }
+        animatorCtrl.ResetTrigger("Death");
         transform.position = startingPoint;
         gameObject.SetActive(true);
         _isAlive = true;
@@ -100,6 +101,7 @@ public class Enemy : MonoBehaviour {
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
         _isAlive = false;
+//        Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
     /// <summary>
@@ -251,6 +253,9 @@ public class Enemy : MonoBehaviour {
             protected LinealMovement(MovementStateMachine movementStateMachine, Vector3 target)
                 : base(movementStateMachine) {
                 _target = target;
+                var difference = _target - MovementStateMachine.EnemyTransform.position;
+                var degrees = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                MovementStateMachine.EnemyTransform.rotation = Quaternion.Euler(0f, 0f, degrees + 90.0f);
             }
 
             /// <summary>
@@ -312,7 +317,7 @@ public class Enemy : MonoBehaviour {
 
             public MoveToFinalPoint(MovementStateMachine movementStateMachine) :
                 base(movementStateMachine, movementStateMachine.FinalPoint) {
-                _waitAttack = new WaitAttack(movementStateMachine, this);
+                _waitAttack = new WaitAttack(MovementStateMachine, this);
             }
 
             protected override State GetNextState() {
@@ -329,7 +334,6 @@ public class Enemy : MonoBehaviour {
             public WaitAttack(MovementStateMachine movementStateMachine, MoveToFinalPoint previousMoveToFinalPointState)
                 : base(movementStateMachine) {
                 _previousMoveToFinalPointState = previousMoveToFinalPointState;
-                Restart();
             }
 
             public override void Move() {
@@ -346,6 +350,7 @@ public class Enemy : MonoBehaviour {
 
             internal void Restart() {
                 _attackWaitTime = Random.Range(1.0f, 3.0f);
+                MovementStateMachine.EnemyTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
         }
 
