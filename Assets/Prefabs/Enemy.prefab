@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4373550398543372}
   - component: {fileID: 212184265673537946}
   - component: {fileID: 50852925928735420}
-  - component: {fileID: 114902012531687034}
-  - component: {fileID: 61342882507425790}
-  m_Layer: 9
+  - component: {fileID: 114109085128713770}
+  - component: {fileID: 61159322689096802}
+  - component: {fileID: 95390351437276150}
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1709293370884196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -7, y: 0, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61342882507425790
+--- !u!61 &61159322689096802
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,9 +87,27 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.93, y: 0.84}
+  m_Size: {x: 0.9, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114902012531687034
+--- !u!95 &95390351437276150
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1709293370884196}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c58ef40e88c07d4494ca3ce801e5c6a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114109085128713770
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,12 +119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 50852925928735420}
-  collider: {fileID: 61342882507425790}
+  collider: {fileID: 61159322689096802}
+  animatorCtrl: {fileID: 95390351437276150}
   speed: 20
-  _startingPoint: {x: -18, y: -5, z: 0}
-  _firstStop: {x: -12, y: 0, z: 0}
-  _secondStop: {x: 0, y: -5, z: 0}
-  _finalPoint: {x: 7, y: 15, z: 0}
+  _startingPoint: {x: -22, y: 0, z: 1}
+  _firstStop: {x: 7, y: 10, z: 1}
+  _secondStop: {x: 15, y: 5, z: 1}
+  _finalPoint: {x: 10, y: 15, z: 1}
+  _player: {fileID: 0}
 --- !u!212 &212184265673537946
 SpriteRenderer:
   m_ObjectHideFlags: 1

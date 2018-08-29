@@ -179,29 +179,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &189898439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1951980889127766, guid: aa0521b32b1b4ce4a88c242c98d36f45,
-    type: 2}
-  m_PrefabInternal: {fileID: 1548256067}
---- !u!114 &189898440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 189898439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ade68b8463ec6d4c8e248c04e22dec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  score: 0
-  livesText: {fileID: 0}
-  livesRemaining: 0
-  enemyPool: []
-  enemyPrefab: {fileID: 114902012531687034, guid: 7b9ac895c225af540940752b9ddcbb62,
-    type: 2}
 --- !u!1001 &233235575
 Prefab:
   m_ObjectHideFlags: 0
