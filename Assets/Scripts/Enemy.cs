@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour {
         // TODO: remove this! Spawn is called from the enemy manager
         Physics.IgnoreLayerCollision(0, 9);
         Physics.IgnoreLayerCollision(9, 9);
+        _player = FindObjectOfType<Player>();
         //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
