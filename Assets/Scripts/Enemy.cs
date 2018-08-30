@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour {
             return;
         }
         animatorCtrl.ResetTrigger("Death");
+        collider.isTrigger = true;
         transform.position = startingPoint;
         gameObject.SetActive(true);
         _isAlive = true;
@@ -104,7 +105,8 @@ public class Enemy : MonoBehaviour {
     private IEnumerator KillEnemy() {
         _movementStateMachine = null;
         _gameController.enemiesAlive--;
-        yield return new WaitForSeconds(1);
+        collider.isTrigger = false;
+        yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
         _isAlive = false;
 //        Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);

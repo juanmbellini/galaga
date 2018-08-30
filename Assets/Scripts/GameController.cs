@@ -44,7 +44,6 @@ public class GameController : MonoBehaviour
 		_player = FindObjectOfType<Player>();
 		Physics2D.IgnoreLayerCollision(9, 9);
 		Physics2D.IgnoreLayerCollision(10, 10);
-
 		enemiesAlive = 0;
 		for (int i = 0; i < 10; i++)
 		{
@@ -56,6 +55,7 @@ public class GameController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+		UpdateUI();
 		StartCoroutine(SpawnEnemies());
 	}
 
@@ -63,7 +63,12 @@ public class GameController : MonoBehaviour
 	{
 		StartCoroutine(WaitDeath());
 		loseLife();
-		SceneManager.LoadScene("SampleScene");
+		if(_scoreController.livesRemaining != 0)SceneManager.LoadScene("MainScene");
+		else
+		{
+			Destroy(_scoreController);
+			SceneManager.LoadScene("GameOver");
+		}
 	}
 
 	IEnumerator WaitDeath()

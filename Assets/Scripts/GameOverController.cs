@@ -7,6 +7,6 @@ public class GameOverController : MonoBehaviour {
 
 	public void GameOver()
 	{
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("MainScene");
 	}
 }

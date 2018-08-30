@@ -27,6 +27,5 @@ public class Shot : MonoBehaviour {
         speed = 0;
         transform.position = new Vector3(-10000, 0, 0);
         speed = 30;
-        //Destroy(gameObject);
     }
 }
