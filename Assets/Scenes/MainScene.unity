@@ -429,30 +429,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 50344993179981840, guid: 4f04fac0ca9451840921126b7f102d97,
     type: 2}
   m_PrefabInternal: {fileID: 699050613}
---- !u!1 &1557186425 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1951980889127766, guid: aa0521b32b1b4ce4a88c242c98d36f45,
-    type: 2}
-  m_PrefabInternal: {fileID: 1780899075}
---- !u!114 &1557186426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1557186425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ade68b8463ec6d4c8e248c04e22dec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 2126093682}
-  livesText: {fileID: 2088830585}
-  enemiesAlive: 0
-  enemyPool: []
-  _scoreController: {fileID: 765037349}
-  _player: {fileID: 0}
-  enemyPrefab: {fileID: 114109085128713770, guid: 7b9ac895c225af540940752b9ddcbb62,
-    type: 2}
 --- !u!1 &1759105869 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1645922189550390, guid: 4f04fac0ca9451840921126b7f102d97,
@@ -515,8 +491,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114974362362825008, guid: aa0521b32b1b4ce4a88c242c98d36f45, type: 2}
+    - target: {fileID: 114879641435170144, guid: aa0521b32b1b4ce4a88c242c98d36f45,
+        type: 2}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 2126093682}
+    - target: {fileID: 114879641435170144, guid: aa0521b32b1b4ce4a88c242c98d36f45,
+        type: 2}
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 2088830585}
+    - target: {fileID: 114879641435170144, guid: aa0521b32b1b4ce4a88c242c98d36f45,
+        type: 2}
+      propertyPath: _scoreController
+      value: 
+      objectReference: {fileID: 765037349}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0521b32b1b4ce4a88c242c98d36f45, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1781654537

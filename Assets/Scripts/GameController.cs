@@ -85,7 +85,8 @@ public class GameController : MonoBehaviour
 		{
 			if (!e.IsAlive())
 			{
-				e.Spawn(new Vector3(-30, 0, 0), new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5,5), 0), new Vector3(0, 10, 0), new Vector3(i*5-22, 2*enemiesAlive, 0));
+				int coin = UnityEngine.Random.Range(-1, 1);
+				e.Spawn(new Vector3(coin<0 ? 30:-30, 0, 0), new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5,5), 0), new Vector3(0, 10, 0), new Vector3(i*5-22, 2*enemiesAlive, 0));
 				i++;
 				enemiesAlive++;
 			}
@@ -100,7 +101,8 @@ public class GameController : MonoBehaviour
 			{
 				if (!e.IsAlive())
 				{
-					e.Spawn(new Vector3(-30, 0, 0), new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5,5), 0), new Vector3(0, 10, 0), new Vector3(UnityEngine.Random.Range(-22,22), 2*enemiesAlive, 0));
+					int coin = UnityEngine.Random.Range(-1, 1);
+					e.Spawn(new Vector3(coin<0 ? 30:-30, 0, 0), new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5,5), 0), new Vector3(0, 10, 0), new Vector3(UnityEngine.Random.Range(-22,22), 2*enemiesAlive, 0));
 					i++;
 					enemiesAlive++;
 				}
