@@ -6,31 +6,19 @@ public class Enemy : MonoBehaviour {
     public BoxCollider2D collider;
     public Animator animatorCtrl;
 
-    
-    
+
     /// <summary>
     /// Indicates the speed (velocity module) for this enemy.
     /// </summary>
     [SerializeField] private float speed;
 
-    // ========================================================
-    // TODO: remove this! This values must be set by the manager through the Spawn method.
-    [SerializeField] private Vector3 _startingPoint;
-
-    [SerializeField] private Vector3 _firstStop;
-
-    [SerializeField] private Vector3 _secondStop;
-
-    [SerializeField] private Vector3 _finalPoint;
-
-    // ========================================================
     /// <summary>
     /// A reference to the player, used to attack it.
     /// </summary>
     [SerializeField] private Player _player;
 
     [SerializeField] private GameController _gameController;
-    
+
     /// <summary>
     /// This flag indicates whether the enemy is alive.
     /// </summary>
@@ -52,12 +40,10 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     private void Start() {
-        // TODO: remove this! Spawn is called from the enemy manager
         Physics.IgnoreLayerCollision(0, 9);
         Physics.IgnoreLayerCollision(9, 9);
         _player = FindObjectOfType<Player>();
         _gameController = GameController.Instance;
-        //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
     // Update is called once per frame
@@ -109,7 +95,6 @@ public class Enemy : MonoBehaviour {
         yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
         _isAlive = false;
-//        Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
     /// <summary>
@@ -398,8 +383,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void wipeEnemy()
-    {
+    public void wipeEnemy() {
         StartCoroutine(KillEnemy());
     }
 }
