@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour {
         Physics.IgnoreLayerCollision(0, 9);
         Physics.IgnoreLayerCollision(9, 9);
         _player = FindObjectOfType<Player>();
-        _gameController = FindObjectOfType<GameController>();
+        _gameController = GameController.Instance;
         //Spawn(_startingPoint, _firstStop, _secondStop, _finalPoint);
     }
 
@@ -394,5 +394,10 @@ public class Enemy : MonoBehaviour {
                 return _previousMoveToFinalPointState;
             }
         }
+    }
+
+    public void wipeEnemy()
+    {
+        StartCoroutine(KillEnemy());
     }
 }

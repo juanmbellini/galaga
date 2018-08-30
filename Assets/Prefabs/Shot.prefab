@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114457326931308610}
   - component: {fileID: 50664005376395032}
   - component: {fileID: 61244539382830620}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shot
   m_TagString: Shot
   m_Icon: {fileID: 0}
@@ -102,6 +102,7 @@ MonoBehaviour:
   body: {fileID: 50664005376395032}
   collider: {fileID: 61244539382830620}
   speed: 30
+  _gameController: {fileID: 0}
 --- !u!212 &212462530373456236
 SpriteRenderer:
   m_ObjectHideFlags: 1

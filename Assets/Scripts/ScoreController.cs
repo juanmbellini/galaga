@@ -6,17 +6,16 @@ using UnityEngine;
 public class ScoreController : MonoBehaviour
 {
 
-	public TextMeshProUGUI score;
-	public TextMeshProUGUI lives;
+	public int score;
+	public int livesRemaining;
 	
 	// Use this for initialization
 	void Start () {
-		
+		livesRemaining = 3;
+		score = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(score.text);
-		Debug.Log(lives.text);
 	}
 }
